@@ -1,6 +1,7 @@
 {
   "email_credentials": {
     "sender_email": "putyouremail@gmail.com",
-    "sender_password": "putyourpassowrd"
+    "sender_password": "putyourpassowrd",
+    "receiver_email": "putyourreciveremail@gmail.com"
   }
 }
