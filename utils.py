@@ -17,7 +17,7 @@ def send_email(nome_cartella):
     email_mittente = credentials.get("sender_email")
     password_mittente = credentials.get("sender_password")
     # Imposta l'indirizzo email del destinatario
-    email_destinatario = "Davide020720035@gmail.com"
+    email_destinatario = credentials.get("receiver_email")
     # Crea l'oggetto MIME
     messaggio = MIMEMultipart()
     messaggio["From"] = email_mittente
