@@ -4,7 +4,7 @@ import keyboard
 import numpy as np
 from cvzone.PoseModule import PoseDetector
 from datetime import datetime
-from utils import send_email, faces_filter_on, save_photos
+from utils import send_email, faces_filter_on, save_photos,load_saved_faces
 
 # Inizializzazione della videocamera
 video_capture = cv2.VideoCapture(0)
@@ -12,22 +12,7 @@ video_capture = cv2.VideoCapture(0)
 # Inizializzazione del rilevatore di posizione
 detector = PoseDetector()
 
-# Caricamento dell'immagine di esempio e apprendimento del riconoscimento del volto
-davide_image = face_recognition.load_image_file("faces/Davide Soltys.jpg")
-davide_face_encoding = face_recognition.face_encodings(davide_image)[0]
-
-trump_image = face_recognition.load_image_file("faces/Donald_Trump_official_portrait.jpg")
-trump_face_encoding = face_recognition.face_encodings(trump_image)[0]
-
-# Creazione di una lista di codifiche facciali conosciute e i relativi nomi
-known_face_encodings = [
-    davide_face_encoding,
-    trump_face_encoding
-]
-known_face_names = [
-    "Davide Soltys",
-    "Donald Trump"
-]
+known_face_names,known_face_encodings = load_saved_faces(path="faces")
 
 # Inizializzazione di alcune variabili
 counter, counter_no_face = 0, 0

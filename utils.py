@@ -5,7 +5,22 @@ from email.mime.image import MIMEImage
 import os
 import cv2
 import json
+import face_recognition
 
+def load_saved_faces(path):
+    known_face_names = []
+    known_face_encodings = []
+    try:
+
+        for face in os.listdir(path):
+            known_face_names.append(face.split(".")[0])
+            image_loaded = face_recognition.load_image_file(f"{path}/{face}")
+            face_encoded = face_recognition.face_encodings(image_loaded)[0]
+            known_face_encodings.append(face_encoded)
+    except FileNotFoundError:
+        print("Errore, file non trovato")
+
+    return known_face_names, known_face_encodings
 def get_email_credentials():
     with open("config.json", "r") as config_file:
         config_data = json.load(config_file)
